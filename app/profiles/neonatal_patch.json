@@ -1,0 +1,33 @@
+{
+  "device": "neonatal_patch",
+  "source": "Starter values from commonly cited newborn reference ranges (NOT derived from the CTU-UHB dataset, which has no newborn temperature data). Replace with real measured data when available.",
+  "signals": {
+    "temperature_c": {
+      "unit": "C",
+      "mean": 36.9,
+      "std": 0.25,
+      "min": 34.0,
+      "max": 40.0,
+      "autocorr": 0.95,
+      "stress_shift": -1.0
+    },
+    "heart_rate_bpm": {
+      "unit": "bpm",
+      "mean": 135.0,
+      "std": 10.0,
+      "min": 70.0,
+      "max": 220.0,
+      "autocorr": 0.9,
+      "stress_shift": 35.0
+    },
+    "spo2_pct": {
+      "unit": "%",
+      "mean": 97.5,
+      "std": 1.0,
+      "min": 70.0,
+      "max": 100.0,
+      "autocorr": 0.9,
+      "stress_shift": -6.0
+    }
+  }
+}

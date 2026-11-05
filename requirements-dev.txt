@@ -1,0 +1,7 @@
+# Tests aur dataset script ke liye extra libraries (app chalane ke liye zaroori nahi)
+-r requirements.txt
+pytest>=8.0
+httpx>=0.27        # FastAPI ka TestClient isse chalta hai
+# Sirf scripts/build_profiles.py ke liye (apne laptop pe, ek baar):
+numpy>=1.26
+wfdb>=4.1

@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+# CTU-UHB dataset badi hai aur license ke saath aati hai - repo/ZIP mein mat daalo
+data/
+ctu-uhb*/
+.DS_Store

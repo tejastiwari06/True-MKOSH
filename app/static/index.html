@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MaaKosh Simulator</title>
+  <style>
+    /* Simple styling: do box (input / output) upar-neeche, saaf aur padhne layak. */
+    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; color: #1f2933; }
+    h1 { font-size: 1.4rem; }
+    p.note { color: #52606d; font-size: 0.9rem; }
+    textarea, pre { width: 100%; box-sizing: border-box; font-family: ui-monospace, monospace; font-size: 0.85rem;
+                    border: 1px solid #cbd2d9; border-radius: 6px; padding: 0.6rem; }
+    textarea { height: 140px; }
+    pre { height: 340px; overflow: auto; background: #f5f7fa; white-space: pre-wrap; }
+    button { margin: 0.6rem 0; padding: 0.5rem 1.1rem; font-size: 0.95rem; cursor: pointer; }
+    #status { margin-left: 0.8rem; font-weight: 600; }
+    .ok { color: #1a7f37; } .bad { color: #b42318; }
+  </style>
+</head>
+<body>
+  <h1>MaaKosh Simulator API</h1>
+  <p class="note">Simulated data only. Flags are threshold checks, not a diagnosis.
+     Devices: <code>neonatal_patch</code>, <code>belly_band</code>. Scenarios: <code>normal</code>, <code>stress</code>.</p>
+
+  <!-- INPUT BOX: yahan JSON likho, ye seedha POST /readings ki body ban jaata hai -->
+  <label for="input"><strong>Input (JSON)</strong></label>
+  <textarea id="input" spellcheck="false">{
+  "device": "neonatal_patch",
+  "count": 5,
+  "seed": 42,
+  "scenario": "stress"
+}</textarea>
+
+  <button id="run">Generate readings</button><span id="status"></span>
+
+  <!-- OUTPUT BOX: server ka jawab (ya error) yahan dikhta hai -->
+  <label for="output"><strong>Output</strong></label>
+  <pre id="output">Press the button to see output.</pre>
+
+  <script>
+    // Page ke elements pakad lete hain taaki unhe badal sakein.
+    const input = document.getElementById("input");
+    const output = document.getElementById("output");
+    const statusEl = document.getElementById("status");
+
+    document.getElementById("run").addEventListener("click", async () => {
+      statusEl.textContent = "";
+
+      // Step 1: input box ka text JSON mein badlo. Galat JSON ho to yahin rok do.
+      let body;
+      try {
+        body = JSON.parse(input.value);
+      } catch (e) {
+        output.textContent = "Input valid JSON nahi hai: " + e.message;
+        statusEl.textContent = "Input error";
+        statusEl.className = "bad";
+        return;
+      }
+
+      // Step 2: server ko POST bhejo.
+      try {
+        const res = await fetch("/readings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+
+        // Step 3: jawab ko sundar format (indent 2) mein output box mein dikhao.
+        // textContent use kiya (innerHTML nahi) taaki jawab kabhi HTML ki tarah run na ho.
+        output.textContent = JSON.stringify(data, null, 2);
+        statusEl.textContent = "HTTP " + res.status;
+        statusEl.className = res.ok ? "ok" : "bad";
+      } catch (e) {
+        output.textContent = "Server se connect nahi hua: " + e.message;
+        statusEl.textContent = "Network error";
+        statusEl.className = "bad";
+      }
+    });
+  </script>
+</body>
+</html>
