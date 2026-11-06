@@ -1,4 +1,4 @@
-# MaaKosh Simulator API (`maakosh-sim-api`)
+# MaaKosh fake valyes generator API (`maakosh-sim-api`)
 
 A small FastAPI prototype that generates **simulated** monitoring readings for a fictional MaaKosh device
 and serves them as JSON. **All data is synthetic. Nothing here diagnoses or clinically assesses anyone.**
@@ -17,8 +17,9 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-- Swagger UI (try every endpoint in the browser): http://127.0.0.1:8000/docs
-- Minimal web page (input box + output box): http://127.0.0.1:8000/
+- Swagger UI : http://127.0.0.1:8000/docs
+- Minimal web page : http://127.0.0.1:8000/
+- render deployed link : https://true-mkosh.onrender.com
 
 ## Tests
 
