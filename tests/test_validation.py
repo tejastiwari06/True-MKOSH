@@ -30,7 +30,7 @@ def test_fractional_count_rejected(client):
     assert_error_format(res, 422, "validation_error")
 
 
-@pytest.mark.parametrize("count", [0, -1, 501])
+@pytest.mark.parametrize("count", [0, -1, config.MAX_COUNT + 1])
 def test_count_out_of_range(client, count):
     res = client.post("/readings", json={"device": "belly_band", "count": count})
     assert_error_format(res, 422, "validation_error")
