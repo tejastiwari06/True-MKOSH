@@ -62,7 +62,7 @@ curl "http://127.0.0.1:8000/readings/latest?seed=42&scenario=stress"
     {"signal": "temperature_c", "value": 35.86, "status": "low", "normal_range": [36.5, 37.5],
      "message": "temperature_c is low (value 35.86, expected 36.5 to 37.5). Screening flag only, not a diagnosis."}
   ],
-  "disclaimer": "Simulated data for software testing only. Flags are simple threshold checks, not a medical diagnosis."
+  "disclaimer": "Simulated data for software testing only. Flags are simple threshold checks, not a medical diagnosis.(काल्पनिक) "
 }
 ```
 (`flags` is shortened here; the real response also flags heart rate and SpO2 in this stress example.)
