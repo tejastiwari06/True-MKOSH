@@ -24,7 +24,7 @@ SUPPORTED_DEVICES = ("neonatal_patch", "belly_band")
 SCENARIOS = ("normal", "stress")
 
 DEFAULT_COUNT = 10           # count na diya to kitni readings
-MAX_COUNT = 10000000000000000000000000000000000000000000             # ek request mein maximum (server pe load na pade)
+MAX_COUNT = 500            # ek request mein maximum (server pe load na pade)
 SAMPLE_INTERVAL_SECONDS = 1  # do readings ke beech ka (nakli) time gap
 
 # Har response ke saath ye line jaati hai, taaki koi isse real medical data na samajh le.
