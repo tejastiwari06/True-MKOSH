@@ -5,10 +5,10 @@
     "maternal_heart_rate_bpm": {
       "unit": "bpm",
       "mean": 82.0,
-       "std": 6.0,         //kitna variate karna chahiye 
+       "std": 6.0,         
       "min": 45.0,
       "max": 160.0,
-      "autocorr": 0.95, //phi (0 se 1 ke beech ka number, jaise 0.95) yaani us doori ka kitna hissa agli baar bhi bacha rahega.0.95 matlab 95% doori bachi, sirf 5% wapas kheenchi. To signal bahut dheere chalta hai (smooth).0.1 matlab sirf 10% doori bachi, 90% wapas kheench li. To signal jaldi-jaldi average pe lautta hai aur jhatke-dar dikhta hai.
+      "autocorr": 0.95, 
       "stress_shift": 25.0
     },
     "fetal_heart_rate_bpm": {
