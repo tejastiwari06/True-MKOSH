@@ -1,6 +1,6 @@
 # test_validation.py -> galat input pe sahi error aana chahiye (422 / 404 / 405) aur format ek jaisa ho.
 
-from pydantic import config
+
 import pytest
 
 
@@ -31,7 +31,7 @@ def test_fractional_count_rejected(client):
     assert_error_format(res, 422, "validation_error")
 
 
-@pytest.mark.parametrize("count", [0, -1, config.MAX_COUNT + 1])
+@pytest.mark.parametrize("count", [0, -1, 501])
 def test_count_out_of_range(client, count):
     res = client.post("/readings", json={"device": "belly_band", "count": count})
     assert_error_format(res, 422, "validation_error")
