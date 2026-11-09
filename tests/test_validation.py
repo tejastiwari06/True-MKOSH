@@ -1,5 +1,6 @@
 # test_validation.py -> galat input pe sahi error aana chahiye (422 / 404 / 405) aur format ek jaisa ho.
 
+from pydantic import config
 import pytest
 
 
