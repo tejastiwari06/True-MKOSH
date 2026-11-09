@@ -1,0 +1,33 @@
+{
+  "device": "belly_band",
+  "source": "Starter values from typical published ranges. Run scripts/build_profiles.py on the CTU-UHB dataset to replace fetal_heart_rate_bpm and uterine_activity with dataset-derived numbers. maternal_heart_rate_bpm stays a reference value (CTU-UHB does not include it).",
+  "signals": {
+    "maternal_heart_rate_bpm": {
+      "unit": "bpm",
+      "mean": 82.0,
+       "std": 6.0,         //kitna variate karna chahiye 
+      "min": 45.0,
+      "max": 160.0,
+      "autocorr": 0.95, //phi (0 se 1 ke beech ka number, jaise 0.95) yaani us doori ka kitna hissa agli baar bhi bacha rahega.0.95 matlab 95% doori bachi, sirf 5% wapas kheenchi. To signal bahut dheere chalta hai (smooth).0.1 matlab sirf 10% doori bachi, 90% wapas kheench li. To signal jaldi-jaldi average pe lautta hai aur jhatke-dar dikhta hai.
+      "stress_shift": 25.0
+    },
+    "fetal_heart_rate_bpm": {
+      "unit": "bpm",
+      "mean": 135.0,
+      "std": 10.0,
+      "min": 60.0,
+      "max": 220.0,
+      "autocorr": 0.9,
+      "stress_shift": -35.0
+    },
+    "uterine_activity": {
+      "unit": "arbitrary units",
+      "mean": 20.0,
+      "std": 15.0,
+      "min": 0.0,
+      "max": 100.0,
+      "autocorr": 0.97,
+      "stress_shift": 15.0
+    }
+  }
+}
